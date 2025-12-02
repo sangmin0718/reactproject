@@ -1,22 +1,36 @@
 import React, { useState } from "react";
 import { View, Text, Image, TouchableOpacity, StyleSheet } from "react-native";
 
-export default function Day3_1({ onNext }) {
-  const [answer, setAnswer] = useState("");
+export default function Day3_2({ onPrev, onNext }) {
+  const [answer1, setAnswer1] = useState("");
+  const [answer2, setAnswer2] = useState("");
 
-  const handlePress = (value) => {
-    setAnswer(value);
+  const handlePress1 = (value) => {
+    setAnswer1(value);
   };
 
-  let resultText = "";
-  let resultColor = "#1e1e1e";
+  const handlePress2 = (value) => {
+    setAnswer2(value);
+  };
 
-  if (answer === "상의") {
-    resultText = "정답입니다.";
-    resultColor = "#1b5e20";
-  } else if (answer !== "") {
-    resultText = "다시 골라 보세요.";
-    resultColor = "#b71c1c";
+  let resultText1 = "";
+  let resultColor1 = "#1e1e1e";
+  if (answer1 === "동물") {
+    resultText1 = "정답입니다.";
+    resultColor1 = "#1b5e20";
+  } else if (answer1 !== "") {
+    resultText1 = "다시 골라 보세요.";
+    resultColor1 = "#b71c1c";
+  }
+
+  let resultText2 = "";
+  let resultColor2 = "#1e1e1e";
+  if (answer2 === "과일") {
+    resultText2 = "정답입니다.";
+    resultColor2 = "#1b5e20";
+  } else if (answer2 !== "") {
+    resultText2 = "다시 골라 보세요.";
+    resultColor2 = "#b71c1c";
   }
 
   return (
@@ -29,38 +43,59 @@ export default function Day3_1({ onNext }) {
 
       <View style={styles.box}>
         <View style={styles.headerRow}>
-          <View style={styles.exampleTag}>
-            <Text style={styles.tagText}>예시</Text>
+          <View style={styles.runTag}>
+            <Text style={styles.tagText}>실행</Text>
           </View>
         </View>
 
         <View style={styles.row}>
           <View style={styles.item}>
             <Image
-              source={require("../assets/images/halfpants.png")}
+              source={require("../assets/images/dog.png")}
               style={styles.image}
             />
-            <Text style={styles.label}>반바지</Text>
+            <Text style={styles.label}>강아지</Text>
           </View>
           <View style={styles.item}>
             <Image
-              source={require("../assets/images/pants.png")}
+              source={require("../assets/images/cat.png")}
               style={styles.image}
             />
-            <Text style={styles.label}>바지</Text>
+            <Text style={styles.label}>고양이</Text>
           </View>
           <View style={styles.item}>
             <Image
-              source={require("../assets/images/skirt.png")}
+              source={require("../assets/images/horse.png")}
               style={styles.image}
             />
-            <Text style={styles.label}>치마</Text>
+            <Text style={styles.label}>말</Text>
           </View>
         </View>
 
-        <View style={styles.exampleAnswerBox}>
-          <Text style={styles.exampleAnswer}>하의</Text>
+        <View style={styles.row}>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => handlePress1("동물")}
+          >
+            <Text style={styles.buttonText}>동물</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => handlePress1("상의")}
+          >
+            <Text style={styles.buttonText}>상의</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => handlePress1("과일")}
+          >
+            <Text style={styles.buttonText}>과일</Text>
+          </TouchableOpacity>
         </View>
+
+        <Text style={[styles.result, { color: resultColor1 }]}>
+          {resultText1}
+        </Text>
       </View>
 
       <View style={styles.box}>
@@ -73,57 +108,63 @@ export default function Day3_1({ onNext }) {
         <View style={styles.row}>
           <View style={styles.item}>
             <Image
-              source={require("../assets/images/shirts.png")}
+              source={require("../assets/images/banana.png")}
               style={styles.image}
             />
-            <Text style={styles.label}>셔츠</Text>
+            <Text style={styles.label}>바나나</Text>
           </View>
           <View style={styles.item}>
             <Image
-              source={require("../assets/images/tshirts.png")}
+              source={require("../assets/images/apple.png")}
               style={styles.image}
             />
-            <Text style={styles.label}>반팔</Text>
+            <Text style={styles.label}>사과</Text>
           </View>
           <View style={styles.item}>
             <Image
-              source={require("../assets/images/zipup.png")}
+              source={require("../assets/images/watermelon.png")}
               style={styles.image}
             />
-            <Text style={styles.label}>자켓</Text>
+            <Text style={styles.label}>수박</Text>
           </View>
         </View>
 
         <View style={styles.row}>
           <TouchableOpacity
             style={styles.button}
-            onPress={() => handlePress("동물")}
+            onPress={() => handlePress2("동물")}
           >
             <Text style={styles.buttonText}>동물</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.button}
-            onPress={() => handlePress("상의")}
+            onPress={() => handlePress2("상의")}
           >
             <Text style={styles.buttonText}>상의</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.button}
-            onPress={() => handlePress("과일")}
+            onPress={() => handlePress2("과일")}
           >
             <Text style={styles.buttonText}>과일</Text>
           </TouchableOpacity>
         </View>
 
-        <Text style={[styles.result, { color: resultColor }]}>
-          {resultText}
+        <Text style={[styles.result, { color: resultColor2 }]}>
+          {resultText2}
         </Text>
       </View>
 
       <View style={styles.nextWrapper}>
-        <TouchableOpacity style={styles.nextButton} onPress={onNext}>
-          <Text style={styles.nextText}>다음</Text>
-        </TouchableOpacity>
+        <View style={styles.row}>
+          <TouchableOpacity style={styles.nextButton} onPress={onPrev}>
+            <Text style={styles.nextText}>이전</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity style={styles.nextButton} onPress={onNext}>
+            <Text style={styles.nextText}>다음</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </View>
   );
@@ -147,10 +188,10 @@ const styles = StyleSheet.create({
     fontSize: 16,
     textAlign: "center",
     fontWeight: "700",
-    color: "#ffffff"
+    color: "#ffffff",
   },
   box: {
-    marginBottom: 40,
+    marginBottom: 20,
   },
   headerRow: {
     marginBottom: 10,
@@ -223,14 +264,14 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   nextWrapper: {
-    alignItems: "flex-end",
   },
-  nextButton: {
+    nextButton: {
     paddingHorizontal: 20,
     paddingVertical: 10,
     borderRadius: 20,
     backgroundColor: "#dddddd",
-  },
+    marginHorizontal: 4,
+    },
   nextText: {
     fontSize: 16,
     fontWeight: "600",
