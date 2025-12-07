@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, Image, TouchableOpacity, StyleSheet } from "react-native";
+import { View, Text, Image, TouchableOpacity, StyleSheet, ScrollView } from "react-native";
 
 export default function Day3_2({ onPrev, onNext }) {
   const [answer1, setAnswer1] = useState("");
@@ -34,147 +34,153 @@ export default function Day3_2({ onPrev, onNext }) {
   }
 
   return (
-    <View style={styles.container}>
-      <View style={styles.instructionBox}>
-        <Text style={styles.instructionText}>
-          각 그림들을 예시와 같이 한 단어로 분류해 보세요.
-        </Text>
+    <ScrollView
+      style={{ flex: 1, backgroundColor: "#ffffff" }}
+      contentContainerStyle={styles.container}
+    >
+      <View>
+        <View style={styles.instructionBox}>
+          <Text style={styles.instructionText}>
+            각 그림들을 예시와 같이 한 단어로 분류해 보세요.
+          </Text>
+        </View>
+
+        <View style={styles.box}>
+          <View style={styles.headerRow}>
+            <View style={styles.runTag}>
+              <Text style={styles.tagText}>실행</Text>
+            </View>
+          </View>
+
+          <View style={styles.row}>
+            <View style={styles.item}>
+              <Image
+                source={require("../assets/images/dog.png")}
+                style={styles.image}
+              />
+              <Text style={styles.label}>강아지</Text>
+            </View>
+            <View style={styles.item}>
+              <Image
+                source={require("../assets/images/cat.png")}
+                style={styles.image}
+              />
+              <Text style={styles.label}>고양이</Text>
+            </View>
+            <View style={styles.item}>
+              <Image
+                source={require("../assets/images/horse.png")}
+                style={styles.image}
+              />
+              <Text style={styles.label}>말</Text>
+            </View>
+          </View>
+
+          <View style={styles.row}>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => handlePress1("동물")}
+            >
+              <Text style={styles.buttonText}>동물</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => handlePress1("상의")}
+            >
+              <Text style={styles.buttonText}>상의</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => handlePress1("과일")}
+            >
+              <Text style={styles.buttonText}>과일</Text>
+            </TouchableOpacity>
+          </View>
+
+          <Text style={[styles.result, { color: resultColor1 }]}>
+            {resultText1}
+          </Text>
+        </View>
+
+        <View style={styles.box}>
+          <View style={styles.headerRow}>
+            <View style={styles.runTag}>
+              <Text style={styles.tagText}>실행</Text>
+            </View>
+          </View>
+
+          <View style={styles.row}>
+            <View style={styles.item}>
+              <Image
+                source={require("../assets/images/banana.png")}
+                style={styles.image}
+              />
+              <Text style={styles.label}>바나나</Text>
+            </View>
+            <View style={styles.item}>
+              <Image
+                source={require("../assets/images/apple.png")}
+                style={styles.image}
+              />
+              <Text style={styles.label}>사과</Text>
+            </View>
+            <View style={styles.item}>
+              <Image
+                source={require("../assets/images/watermelon.png")}
+                style={styles.image}
+              />
+              <Text style={styles.label}>수박</Text>
+            </View>
+          </View>
+
+          <View style={styles.row}>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => handlePress2("동물")}
+            >
+              <Text style={styles.buttonText}>동물</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => handlePress2("상의")}
+            >
+              <Text style={styles.buttonText}>상의</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => handlePress2("과일")}
+            >
+              <Text style={styles.buttonText}>과일</Text>
+            </TouchableOpacity>
+          </View>
+
+          <Text style={[styles.result, { color: resultColor2 }]}>
+            {resultText2}
+          </Text>
+        </View>
+
+        <View style={styles.nextWrapper}>
+          <View style={styles.row}>
+            <TouchableOpacity style={styles.nextButton} onPress={onPrev}>
+              <Text style={styles.nextText}>이전</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity style={styles.nextButton} onPress={onNext}>
+              <Text style={styles.nextText}>다음</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
       </View>
-
-      <View style={styles.box}>
-        <View style={styles.headerRow}>
-          <View style={styles.runTag}>
-            <Text style={styles.tagText}>실행</Text>
-          </View>
-        </View>
-
-        <View style={styles.row}>
-          <View style={styles.item}>
-            <Image
-              source={require("../assets/images/dog.png")}
-              style={styles.image}
-            />
-            <Text style={styles.label}>강아지</Text>
-          </View>
-          <View style={styles.item}>
-            <Image
-              source={require("../assets/images/cat.png")}
-              style={styles.image}
-            />
-            <Text style={styles.label}>고양이</Text>
-          </View>
-          <View style={styles.item}>
-            <Image
-              source={require("../assets/images/horse.png")}
-              style={styles.image}
-            />
-            <Text style={styles.label}>말</Text>
-          </View>
-        </View>
-
-        <View style={styles.row}>
-          <TouchableOpacity
-            style={styles.button}
-            onPress={() => handlePress1("동물")}
-          >
-            <Text style={styles.buttonText}>동물</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.button}
-            onPress={() => handlePress1("상의")}
-          >
-            <Text style={styles.buttonText}>상의</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.button}
-            onPress={() => handlePress1("과일")}
-          >
-            <Text style={styles.buttonText}>과일</Text>
-          </TouchableOpacity>
-        </View>
-
-        <Text style={[styles.result, { color: resultColor1 }]}>
-          {resultText1}
-        </Text>
-      </View>
-
-      <View style={styles.box}>
-        <View style={styles.headerRow}>
-          <View style={styles.runTag}>
-            <Text style={styles.tagText}>실행</Text>
-          </View>
-        </View>
-
-        <View style={styles.row}>
-          <View style={styles.item}>
-            <Image
-              source={require("../assets/images/banana.png")}
-              style={styles.image}
-            />
-            <Text style={styles.label}>바나나</Text>
-          </View>
-          <View style={styles.item}>
-            <Image
-              source={require("../assets/images/apple.png")}
-              style={styles.image}
-            />
-            <Text style={styles.label}>사과</Text>
-          </View>
-          <View style={styles.item}>
-            <Image
-              source={require("../assets/images/watermelon.png")}
-              style={styles.image}
-            />
-            <Text style={styles.label}>수박</Text>
-          </View>
-        </View>
-
-        <View style={styles.row}>
-          <TouchableOpacity
-            style={styles.button}
-            onPress={() => handlePress2("동물")}
-          >
-            <Text style={styles.buttonText}>동물</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.button}
-            onPress={() => handlePress2("상의")}
-          >
-            <Text style={styles.buttonText}>상의</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.button}
-            onPress={() => handlePress2("과일")}
-          >
-            <Text style={styles.buttonText}>과일</Text>
-          </TouchableOpacity>
-        </View>
-
-        <Text style={[styles.result, { color: resultColor2 }]}>
-          {resultText2}
-        </Text>
-      </View>
-
-      <View style={styles.nextWrapper}>
-        <View style={styles.row}>
-          <TouchableOpacity style={styles.nextButton} onPress={onPrev}>
-            <Text style={styles.nextText}>이전</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity style={styles.nextButton} onPress={onNext}>
-            <Text style={styles.nextText}>다음</Text>
-          </TouchableOpacity>
-        </View>
-      </View>
-    </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flexGrow: 1,
     paddingTop: 60,
     paddingHorizontal: 20,
+    paddingBottom: 40,
     backgroundColor: "#ffffff",
   },
   instructionBox: {
@@ -265,13 +271,13 @@ const styles = StyleSheet.create({
   },
   nextWrapper: {
   },
-    nextButton: {
+  nextButton: {
     paddingHorizontal: 20,
     paddingVertical: 10,
     borderRadius: 20,
     backgroundColor: "#dddddd",
     marginHorizontal: 4,
-    },
+  },
   nextText: {
     fontSize: 16,
     fontWeight: "600",

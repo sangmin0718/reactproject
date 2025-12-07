@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, Image, TouchableOpacity, StyleSheet } from "react-native";
+import { View, Text, Image, TouchableOpacity, StyleSheet, ScrollView } from "react-native";
 
 export default function Day3_1({ onNext }) {
   const [answer, setAnswer] = useState("");
@@ -20,120 +20,126 @@ export default function Day3_1({ onNext }) {
   }
 
   return (
-    <View style={styles.container}>
-      <View style={styles.instructionBox}>
-        <Text style={styles.instructionText}>
-          각 그림들을 예시와 같이 한 단어로 분류해 보세요.
-        </Text>
-      </View>
+    <ScrollView
+      style={{ flex: 1, backgroundColor: "#ffffff" }}
+      contentContainerStyle={styles.container}
+    >
+      <View>
+        <View style={styles.instructionBox}>
+          <Text style={styles.instructionText}>
+            각 그림들을 예시와 같이 한 단어로 분류해 보세요.
+          </Text>
+        </View>
 
-      <View style={styles.box}>
-        <View style={styles.headerRow}>
-          <View style={styles.exampleTag}>
-            <Text style={styles.tagText}>예시</Text>
+        <View style={styles.box}>
+          <View style={styles.headerRow}>
+            <View style={styles.exampleTag}>
+              <Text style={styles.tagText}>예시</Text>
+            </View>
+          </View>
+
+          <View style={styles.row}>
+            <View style={styles.item}>
+              <Image
+                source={require("../assets/images/halfpants.png")}
+                style={styles.image}
+              />
+              <Text style={styles.label}>반바지</Text>
+            </View>
+            <View style={styles.item}>
+              <Image
+                source={require("../assets/images/pants.png")}
+                style={styles.image}
+              />
+              <Text style={styles.label}>바지</Text>
+            </View>
+            <View style={styles.item}>
+              <Image
+                source={require("../assets/images/skirt.png")}
+                style={styles.image}
+              />
+              <Text style={styles.label}>치마</Text>
+            </View>
+          </View>
+
+          <View style={styles.exampleAnswerBox}>
+            <Text style={styles.exampleAnswer}>하의</Text>
           </View>
         </View>
 
-        <View style={styles.row}>
-          <View style={styles.item}>
-            <Image
-              source={require("../assets/images/halfpants.png")}
-              style={styles.image}
-            />
-            <Text style={styles.label}>반바지</Text>
+        <View style={styles.box}>
+          <View style={styles.headerRow}>
+            <View style={styles.runTag}>
+              <Text style={styles.tagText}>실행</Text>
+            </View>
           </View>
-          <View style={styles.item}>
-            <Image
-              source={require("../assets/images/pants.png")}
-              style={styles.image}
-            />
-            <Text style={styles.label}>바지</Text>
+
+          <View style={styles.row}>
+            <View style={styles.item}>
+              <Image
+                source={require("../assets/images/shirts.png")}
+                style={styles.image}
+              />
+              <Text style={styles.label}>셔츠</Text>
+            </View>
+            <View style={styles.item}>
+              <Image
+                source={require("../assets/images/tshirts.png")}
+                style={styles.image}
+              />
+              <Text style={styles.label}>반팔</Text>
+            </View>
+            <View style={styles.item}>
+              <Image
+                source={require("../assets/images/zipup.png")}
+                style={styles.image}
+              />
+              <Text style={styles.label}>자켓</Text>
+            </View>
           </View>
-          <View style={styles.item}>
-            <Image
-              source={require("../assets/images/skirt.png")}
-              style={styles.image}
-            />
-            <Text style={styles.label}>치마</Text>
+
+          <View style={styles.row}>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => handlePress("동물")}
+            >
+              <Text style={styles.buttonText}>동물</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => handlePress("상의")}
+            >
+              <Text style={styles.buttonText}>상의</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => handlePress("과일")}
+            >
+              <Text style={styles.buttonText}>과일</Text>
+            </TouchableOpacity>
           </View>
+
+          <Text style={[styles.result, { color: resultColor }]}>
+            {resultText}
+          </Text>
         </View>
 
-        <View style={styles.exampleAnswerBox}>
-          <Text style={styles.exampleAnswer}>하의</Text>
-        </View>
-      </View>
-
-      <View style={styles.box}>
-        <View style={styles.headerRow}>
-          <View style={styles.runTag}>
-            <Text style={styles.tagText}>실행</Text>
-          </View>
-        </View>
-
-        <View style={styles.row}>
-          <View style={styles.item}>
-            <Image
-              source={require("../assets/images/shirts.png")}
-              style={styles.image}
-            />
-            <Text style={styles.label}>셔츠</Text>
-          </View>
-          <View style={styles.item}>
-            <Image
-              source={require("../assets/images/tshirts.png")}
-              style={styles.image}
-            />
-            <Text style={styles.label}>반팔</Text>
-          </View>
-          <View style={styles.item}>
-            <Image
-              source={require("../assets/images/zipup.png")}
-              style={styles.image}
-            />
-            <Text style={styles.label}>자켓</Text>
-          </View>
-        </View>
-
-        <View style={styles.row}>
-          <TouchableOpacity
-            style={styles.button}
-            onPress={() => handlePress("동물")}
-          >
-            <Text style={styles.buttonText}>동물</Text>
+        <View style={styles.nextWrapper}>
+          <TouchableOpacity style={styles.nextButton} onPress={onNext}>
+            <Text style={styles.nextText}>다음</Text>
           </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.button}
-            onPress={() => handlePress("상의")}
-          >
-            <Text style={styles.buttonText}>상의</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.button}
-            onPress={() => handlePress("과일")}
-          >
-            <Text style={styles.buttonText}>과일</Text>
-          </TouchableOpacity>
         </View>
-
-        <Text style={[styles.result, { color: resultColor }]}>
-          {resultText}
-        </Text>
       </View>
-
-      <View style={styles.nextWrapper}>
-        <TouchableOpacity style={styles.nextButton} onPress={onNext}>
-          <Text style={styles.nextText}>다음</Text>
-        </TouchableOpacity>
-      </View>
-    </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flexGrow: 1,
     paddingTop: 60,
     paddingHorizontal: 20,
+    paddingBottom: 40,
     backgroundColor: "#ffffff",
   },
   instructionBox: {
